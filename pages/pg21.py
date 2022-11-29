@@ -7,14 +7,14 @@ from dash import dcc, html, register_page, ctx, no_update
 from dash_extensions.enrich import Output, Input, State, callback
 
 dash.register_page(__name__,
-                   path='/women-10-low-6th',  # represents the url text
-                   name='Percentage of women among the bottom 10% test scores in 6th grade',  # name of page, commonly used as name of link
-                   title='Percentage of women among the bottom 10% test scores in 6th grade'  # epresents the title of browser's tab
+                   path='/women-high-10-15',  # represents the url text
+                   name='Percentage of women among the bottom 10% test scores for 15 year-old students',  # name of page, commonly used as name of link
+                   title='Percentage of women among the bottom 10% test scores for 15 year-old students'  # epresents the title of browser's tab
 )
 
 
 # page 1 data
-df = pd.read_csv("datasets/mujeres_p10_6to.csv")
+df = pd.read_csv("datasets/mujeres_p10_15.csv")
 df['indicador'] = df['indicador'].astype(str)
 df['pais'] = df['pais'].astype(str)
 df['comparacion_por'] = df['comparacion_por'].astype(str)
@@ -96,8 +96,11 @@ def update_graphs(pais_v, comparacion_por_v, Year_chosen):
         symbol= 'desagregacion',
         labels=dict(ano="Year", valor="", pais="Country", indicador="Indicator", desagregacion="Disaggregation")).update_xaxes(type='category').update_layout(margin=dict(l=10, r=10, t=10, b=10))
     else:
-        fig_line = px.bar(dff, x='ano', y='valor', color='pais', pattern_shape='desagregacion', pattern_shape_sequence=["", "x", "."], barmode="group",
+        fig_line = px.line(dff, x='ano', y='valor', color='pais',
+        line_dash= 'desagregacion', symbol= 'desagregacion',
         labels=dict(ano="Year", valor="", pais="Country", indicador="Indicator", desagregacion="Disaggregation")).update_xaxes(type='category').update_layout(margin=dict(l=10, r=10, t=10, b=10))
+    fig_line.update_traces(line=dict(width=2), 
+        marker={'size': 10})
     fig_line.update_layout(
         xaxis=dict( 
             showline=True,

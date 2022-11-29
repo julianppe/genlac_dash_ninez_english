@@ -7,14 +7,14 @@ from dash import dcc, html, register_page, ctx, no_update
 from dash_extensions.enrich import Output, Input, State, callback
 
 dash.register_page(__name__,
-                   path='/score-15',  # represents the url text
-                   name='Average score in standardized tests for 15 year-old students',  # name of page, commonly used as name of link
-                   title='Average score in standardized tests for 15 year-old students'  # epresents the title of browser's tab
+                   path='/ratio-3rd',  # represents the url text
+                   name='Ratio of standardized tests scores for 3rd grade students',  # name of page, commonly used as name of link
+                   title='Ratio of standardized tests scores for 3rd grade students'  # epresents the title of browser's tab
 )
 
 
 # page 1 data
-df = pd.read_csv("datasets/puntajes_15.csv")
+df = pd.read_csv("datasets/ratio_3ro.csv")
 df['indicador'] = df['indicador'].astype(str)
 df['pais'] = df['pais'].astype(str)
 df['comparacion_por'] = df['comparacion_por'].astype(str)
@@ -91,23 +91,13 @@ def update_graphs(pais_v, comparacion_por_v, Year_chosen):
     indicador = dff['indicador'].iat[0]
     detalle_indicador_v = dff['detalle_indicador'].iat[0]
     disclaimer = dff['disclaimer'].iat[0]
-    if comparacion_por_v == "Gap women - men, mathematic":
-        fig_line = px.line(dff, x='ano', y='valor', color='pais', error_y='valor_errorestandar_matem', symbol= 'desagregacion')
-        #labels=dict(ano="Year", valor="", pais="Country", indicador="Indicator", desagregacion="Disaggregation")).update_xaxes(type='category').update_layout(margin=dict(l=10, r=10, t=10, b=10))
-    elif comparacion_por_v == "Gap women - men, language":
-        fig_line = px.line(dff, x='ano', y='valor', color='pais', error_y='valor_errorestandar_lectu',
-        symbol= 'desagregacion',
-        labels=dict(ano="Year", valor="", pais="Country", indicador="Indicator", desagregacion="Disaggregation")).update_xaxes(type='category').update_layout(margin=dict(l=10, r=10, t=10, b=10))
-    elif comparacion_por_v == "Gap women - men, science":
-        fig_line = px.line(dff, x='ano', y='valor', color='pais', error_y='valor_errorestandar_ciencia',
+    if comparacion_por_v == "Women - men gap":
+        fig_line = px.line(dff, x='ano', y='valor', color='pais', error_y='valor_errorestandar',
         symbol= 'desagregacion',
         labels=dict(ano="Year", valor="", pais="Country", indicador="Indicator", desagregacion="Disaggregation")).update_xaxes(type='category').update_layout(margin=dict(l=10, r=10, t=10, b=10))
     else:
-        fig_line = px.line(dff, x='ano', y='valor', color='pais',
-        line_dash= 'desagregacion', symbol= 'desagregacion',
+        fig_line = px.bar(dff, x='ano', y='valor', color='pais', pattern_shape='desagregacion', pattern_shape_sequence=["", "x", "."], barmode="group",
         labels=dict(ano="Year", valor="", pais="Country", indicador="Indicator", desagregacion="Disaggregation")).update_xaxes(type='category').update_layout(margin=dict(l=10, r=10, t=10, b=10))
-    fig_line.update_traces(line=dict(width=2), 
-        marker={'size': 10})
     fig_line.update_layout(
         xaxis=dict( 
             showline=True,

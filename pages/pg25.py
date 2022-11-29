@@ -7,14 +7,14 @@ from dash import dcc, html, register_page, ctx, no_update
 from dash_extensions.enrich import Output, Input, State, callback
 
 dash.register_page(__name__,
-                   path='/women-10-high-15',  # represents the url text
-                   name='Percentage of women among the top 10% test scores for 15 year-old students',  # name of page, commonly used as name of link
-                   title='Percentage of women among the top 10% test scores for 15 year-old students'  # epresents the title of browser's tab
+                   path='/women-illiterate-functionally',  # represents the url text
+                   name='Percentage of women among 15 year-old functionally-illiterate students',  # name of page, commonly used as name of link
+                   title='Percentage of women among 15 year-old functionally-illiterate students'  # epresents the title of browser's tab
 )
 
 
 # page 1 data
-df = pd.read_csv("datasets/mujeres_p90_15.csv")
+df = pd.read_csv("datasets/mujeres_analfa_15.csv")
 df['indicador'] = df['indicador'].astype(str)
 df['pais'] = df['pais'].astype(str)
 df['comparacion_por'] = df['comparacion_por'].astype(str)

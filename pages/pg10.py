@@ -7,14 +7,14 @@ from dash import dcc, html, register_page, ctx, no_update
 from dash_extensions.enrich import Output, Input, State, callback
 
 dash.register_page(__name__,
-                   path='/hours-care-activities',  # represents the url text
-                   name='Weekly hours allocated to care activities',  # name of page, commonly used as name of link
-                   title='Weekly hours allocated to care activities'  # epresents the title of browser's tab
+                   path='/participation-childcare-activities',  # represents the url text
+                   name='Participation in childcare activities',  # name of page, commonly used as name of link
+                   title='Participation in childcare activities'  # epresents the title of browser's tab
 )
 
 
 # page 1 data
-df = pd.read_csv("datasets/hs_cuidado.csv")
+df = pd.read_csv("datasets/cuidado_ninos.csv")
 df['indicador'] = df['indicador'].astype(str)
 df['pais'] = df['pais'].astype(str)
 df['comparacion_por'] = df['comparacion_por'].astype(str)
