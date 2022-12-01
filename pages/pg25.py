@@ -80,10 +80,10 @@ def sync_dropdowns(dd_pais, store_pais):
 )
 
 
-def update_graphs(pais_v, comparacion_por_v, Year_chosen):
+def update_graphs(pais_v, comparacion_por_v, years_chosen):
     dff = df.copy()
-    print(Year_chosen)
-    dff=dff[(dff['ano']>=Year_chosen[0])&(dff['ano']<=Year_chosen[1])]
+    print(years_chosen)
+    dff=dff[(dff['ano']>=years_chosen[0])&(dff['ano']<=years_chosen[1])]
     if type(pais_v) == str:
         pais_v = [pais_v]
     dff = dff[dff['pais'].isin(pais_v)]
