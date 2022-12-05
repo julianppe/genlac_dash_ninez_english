@@ -8,8 +8,8 @@ from dash_extensions.enrich import Output, Input, State, callback
 
 dash.register_page(__name__,
                    path='/enrollment-rate-pre-primary-35',  # represents the url text
-                   name='Pre-primary enrollment rate (3-5 Year old)',  # name of page, commonly used as name of link
-                   title='Pre-primary enrollment rate (3-5 Year old)'  # epresents the title of browser's tab
+                   name='Pre-primary enrollment rate (3-5 year old)',  # name of page, commonly used as name of link
+                   title='Pre-primary enrollment rate (3-5 year old)'  # epresents the title of browser's tab
 )
 
 

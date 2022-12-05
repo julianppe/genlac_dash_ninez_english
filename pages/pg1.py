@@ -9,8 +9,8 @@ from dash_extensions.enrich import Output, Input, State, callback
 # To create meta tag for each page, define the title, image, and description.
 dash.register_page(__name__,
                    path='/',  # '/' is home page and it represents the url
-                   name='Pre-primary enrollment rate (5 Year old)',  # name of page, commonly used as name of link
-                   title='Pre-primary enrollment rate (5 Year old)',  # title that appears on browser's tab
+                   name='Pre-primary enrollment rate (5 year old)',  # name of page, commonly used as name of link
+                   title='Pre-primary enrollment rate (5 year old)',  # title that appears on browser's tab
                    #image='pg1.png',  # image in the assets folder
                    #description='Histograms are the new bar charts.'
 )
